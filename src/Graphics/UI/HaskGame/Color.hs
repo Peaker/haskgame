@@ -1,6 +1,6 @@
 {-# OPTIONS -Wall -O2 #-}
 
-module HaskGame.Color(Color(..))
+module Graphics.UI.HaskGame.Color(Color(..))
 where
 
 import Data.Word(Word8)

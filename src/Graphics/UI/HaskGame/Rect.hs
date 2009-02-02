@@ -1,17 +1,18 @@
-module HaskGame.Rect(Rect
-                    ,rectToVectors
-                    ,vectorsToRect
-                    ,makeRect
-                    ,vectorsToPVectors, pVectorsToVectors
-                    ,inRect
-                    ,rectPos, rectSize
-                    ,rectX, rectY, rectW, rectH
-                    ,makePosRect
-                    ,unionRects)
+module Graphics.UI.HaskGame.Rect
+    (Rect
+    ,rectToVectors
+    ,vectorsToRect
+    ,makeRect
+    ,vectorsToPVectors, pVectorsToVectors
+    ,inRect
+    ,rectPos, rectSize
+    ,rectX, rectY, rectW, rectH
+    ,makePosRect
+    ,unionRects)
 where
 
 import qualified Graphics.UI.SDL as SDL
-import HaskGame.Vector2(Vector2(..), vector2first, vector2second)
+import Graphics.UI.HaskGame.Vector2(Vector2(..), vector2first, vector2second)
 import Control.Arrow(first, second)
 import Control.Applicative(liftA2)
 

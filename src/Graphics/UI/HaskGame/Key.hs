@@ -1,15 +1,15 @@
 {-# OPTIONS_GHC -Wall -O2 #-}
 
-module HaskGame.Key(keyOfEvent
-                   ,ModKey(..),KeyGroup(..)
-                   ,singletonKeyGroup,asKeyGroup,keyName
-                   ,Mods(..),noMods,shift,ctrl,alt
-                   ,Keysym)
+module Graphics.UI.HaskGame.Key
+    (keyOfEvent
+    ,ModKey(..),KeyGroup(..)
+    ,singletonKeyGroup,asKeyGroup,keyName
+    ,Mods(..),noMods,shift,ctrl,alt
+    ,Keysym)
 where
 
 import qualified Graphics.UI.SDL as SDL
 import qualified Data.Set as Set
-import Func(result)
 
 type Keysym = SDL.Keysym
 data Mods = MkMods { isShift, isCtrl, isAlt :: Bool }
@@ -26,7 +26,7 @@ singletonKeyGroup :: ModKey -> KeyGroup
 singletonKeyGroup key = KeyGroup (keyName key) (Set.singleton key)
 
 asKeyGroup :: Mods -> SDL.SDLKey -> KeyGroup
-asKeyGroup = (result . result) singletonKeyGroup ModKey
+asKeyGroup = (fmap . fmap) singletonKeyGroup ModKey
 
 modsName :: Mods -> String
 modsName mods =

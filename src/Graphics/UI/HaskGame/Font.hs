@@ -1,13 +1,16 @@
 {-# OPTIONS -Wall -O2 #-}
 
-module HaskGame.Font(Font, renderText,textSize,defaultFont,withInit)
+module Graphics.UI.HaskGame.Font
+    (Font
+    ,renderText,textSize
+    ,defaultFont,withInit)
 where
 
 import qualified Graphics.UI.SDL as SDL
 import qualified Graphics.UI.SDL.TTF as TTF
-import qualified HaskGame.Utils as Utils
-import HaskGame.Color(Color(..))
-import HaskGame.Vector2(Vector2(..))
+import qualified Graphics.UI.HaskGame.Utils as Utils
+import Graphics.UI.HaskGame.Color(Color(..))
+import Graphics.UI.HaskGame.Vector2(Vector2(..))
 
 type Font = TTF.Font
 

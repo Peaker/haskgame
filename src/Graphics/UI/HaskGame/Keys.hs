@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wall -O2 #-}
 
-module HaskGame.Keys
+module Graphics.UI.HaskGame.Keys
     (KeyGroup(..),allGroups,groupsOfKey,keysUnicode
     ,printableGroup,digitsGroup,lettersGroup
     ,upperCaseGroup,lowerCaseGroup,arrowsGroup
@@ -10,8 +10,9 @@ where
 import qualified Data.Map as Map
 import qualified Data.Set as Set
 import qualified Graphics.UI.SDL as SDL
-import HaskGame.Key(noMods, shift, ModKey(..), KeyGroup(..)
-                   ,singletonKeyGroup)
+import Graphics.UI.HaskGame.Key
+    (noMods, shift, ModKey(..), KeyGroup(..)
+    ,singletonKeyGroup)
 
 inGroup :: ModKey -> KeyGroup -> Bool
 key `inGroup` group = key `Set.member` (keyGroupKeys group)

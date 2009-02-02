@@ -1,6 +1,7 @@
 {-# OPTIONS -Wall -O2 #-}
 
-module HaskGame.Utils(bracket__,ioBoolToError)
+module Graphics.UI.HaskGame.Utils
+    (bracket__,ioBoolToError)
 where
 
 import qualified IO
