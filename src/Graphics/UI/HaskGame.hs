@@ -1,7 +1,7 @@
 {-# OPTIONS -Wall -O2 #-}
 
 module Graphics.UI.HaskGame
-    (Surface,Event
+    (Surface,Event,Size
     ,createRGBSurface,blit,fillRect,fillSurface
     ,withInit,getEvents,surfaceSize,setVideoMode
     )
@@ -11,6 +11,7 @@ import qualified Graphics.UI.SDL as SDL
 import qualified Graphics.UI.HaskGame.Rect as Rect
 import qualified Graphics.UI.HaskGame.Font as Font
 import qualified Graphics.UI.HaskGame.Utils as Utils
+import Graphics.UI.HaskGame.Utils(Size)
 import Graphics.UI.HaskGame.Color(Color(..))
 import Graphics.UI.HaskGame.Vector2(Vector2(..))
 import Control.Monad(liftM)
@@ -65,7 +66,7 @@ pixel surface (Color r g b) = SDL.mapRGB (SDL.surfaceGetPixelFormat surface) r g
 getEvents :: IO [Event]
 getEvents = whileM (/=SDL.NoEvent) SDL.pollEvent
 
-surfaceSize :: Surface -> Vector2 Int
+surfaceSize :: Surface -> Size
 surfaceSize surface = Vector2 (SDL.surfaceGetWidth surface)
                               (SDL.surfaceGetHeight surface)
 
