@@ -2,7 +2,7 @@
 
 module Graphics.UI.HaskGame
     (Surface,Event
-    ,createRGBSurface,blit,fillRect,fillSurface
+    ,createRGBSurface,blit,blitPart,fillRect,fillSurface
     ,withInit,getEvents,surfaceSize,setVideoMode
     )
 where
@@ -11,6 +11,7 @@ import qualified Graphics.UI.SDL as SDL
 import qualified Graphics.UI.HaskGame.Rect as Rect
 import qualified Graphics.UI.HaskGame.Font as Font
 import qualified Graphics.UI.HaskGame.Utils as Utils
+import Graphics.UI.HaskGame.Rect(Rect)
 import Graphics.UI.HaskGame.Color(Color(..))
 import Graphics.UI.HaskGame.Vector2(Vector2(..))
 import Control.Monad(liftM)
@@ -39,7 +40,12 @@ blit dest pos src = do
   SDL.blitSurface src Nothing dest (Just . Rect.makePosRect $ pos)
   return ()
 
-sdlFillRect :: Surface -> Maybe Rect.Rect -> Color -> IO ()
+blitPart :: Rect -> Surface -> Vector2 Int -> Surface -> IO ()
+blitPart srcRect dest destPos src = do
+  SDL.blitSurface src (Just srcRect) dest (Just . Rect.makePosRect $ destPos)
+  return ()
+
+sdlFillRect :: Surface -> Maybe Rect -> Color -> IO ()
 sdlFillRect surface mRect color = do
   fillerPixel <- pixel surface color
   SDL.fillRect surface mRect fillerPixel
@@ -48,7 +54,7 @@ sdlFillRect surface mRect color = do
 fillSurface :: Surface -> Color -> IO ()
 fillSurface surface color = sdlFillRect surface Nothing color
 
-fillRect :: Surface -> Rect.Rect -> Color -> IO ()
+fillRect :: Surface -> Rect -> Color -> IO ()
 fillRect surface rect color = sdlFillRect surface (Just rect) color
 
 initKeyRepeat :: IO ()
