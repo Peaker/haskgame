@@ -1,13 +1,10 @@
 {-# OPTIONS -Wall -O2 #-}
 
 module Graphics.UI.HaskGame.Utils
-    (Size, bracket__,ioBoolToError)
+    (bracket__,ioBoolToError)
 where
 
 import qualified IO
-import Graphics.UI.HaskGame.Vector2(Vector2)
-
-type Size = Vector2 Int
 
 bracket__ :: IO () -> IO () -> IO () -> IO ()
 bracket__ pre post code = IO.bracket_ pre (const post) code
