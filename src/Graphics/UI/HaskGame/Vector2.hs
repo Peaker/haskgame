@@ -2,10 +2,11 @@
 
 module Graphics.UI.HaskGame.Vector2
     (Vector2(Vector2)
-    ,vector2first,vector2second
-    ,vector2fst,vector2snd)
+    ,first,second
+    ,fst,snd)
 where
 
+import Prelude hiding (fst, snd)
 import Control.Applicative(Applicative(..), liftA2)
 
 data Vector2 a = Vector2 !a !a
@@ -16,12 +17,12 @@ data Vector2 a = Vector2 !a !a
 
 type Endo a = a -> a
 
-vector2fst, vector2snd :: Vector2 a -> a
-vector2fst (Vector2 x _) = x
-vector2snd (Vector2 _ y) = y
-vector2first, vector2second :: Endo a -> Endo (Vector2 a)
-vector2first f (Vector2 x y) = Vector2 (f x) y
-vector2second f (Vector2 x y) = Vector2 x (f y)
+fst, snd :: Vector2 a -> a
+fst (Vector2 x _) = x
+snd (Vector2 _ y) = y
+first, second :: Endo a -> Endo (Vector2 a)
+first f (Vector2 x y) = Vector2 (f x) y
+second f (Vector2 x y) = Vector2 x (f y)
 
 instance Functor Vector2 where
   fmap f (Vector2 x y) = Vector2 (f x) (f y)

@@ -37,12 +37,14 @@ createRGBSurface (Vector2 w h) = do
 
 blit :: Surface -> Vector2 Int -> Surface -> IO ()
 blit dest pos src = do
-  SDL.blitSurface src Nothing dest (Just . Rect.makePosRect $ pos)
+  SDL.blitSurface src Nothing dest (Just . Rect.makeFromPos $ pos)
   return ()
 
-blitPart :: Rect -> Surface -> Vector2 Int -> Surface -> IO ()
-blitPart srcRect dest destPos src = do
-  SDL.blitSurface src (Just srcRect) dest (Just . Rect.makePosRect $ destPos)
+blitPart :: Surface -> Vector2 Int -> Surface -> Rect -> IO ()
+blitPart dest destPos src srcRect = do
+  SDL.blitSurface
+     src (Just . Rect.trunc $ srcRect) dest
+     (Just . Rect.makeFromPos $ destPos)
   return ()
 
 sdlFillRect :: Surface -> Maybe Rect -> Color -> IO ()
