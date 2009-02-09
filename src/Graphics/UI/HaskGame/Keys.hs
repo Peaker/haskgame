@@ -37,20 +37,29 @@ combineGroups name groups = KeyGroup name (Set.unions . map keyGroupKeys $ group
 keysSetOfUnicode :: Map.Map ModKey String -> Set.Set ModKey
 keysSetOfUnicode = Set.fromList . Map.keys
 
-printableGroup, digitsGroup, lettersGroup,
-  upperCaseGroup, lowerCaseGroup, arrowsGroup :: KeyGroup
+lettersGroup :: KeyGroup
 lettersGroup = combineGroups "Letters" [upperCaseGroup, lowerCaseGroup]
+
+printableGroup :: KeyGroup
 printableGroup = KeyGroup "Printable" . keysSetOfUnicode $ keysUnicode
+
+digitsGroup :: KeyGroup
 digitsGroup = KeyGroup "Digits" . keysSetOfUnicode $ digitsUnicode
+
+upperCaseGroup :: KeyGroup
 upperCaseGroup = KeyGroup "Upper-case letters" . keysSetOfUnicode $ upperCaseUnicode
+
+lowerCaseGroup :: KeyGroup
 lowerCaseGroup = KeyGroup "Lower-case letters" . keysSetOfUnicode $ lowerCaseUnicode
+
+arrowsGroup :: KeyGroup
 arrowsGroup = KeyGroup "Arrows" $
               Set.fromList [ModKey noMods SDL.SDLK_LEFT
                            ,ModKey noMods SDL.SDLK_RIGHT
                            ,ModKey noMods SDL.SDLK_UP
                            ,ModKey noMods SDL.SDLK_DOWN]
 
-lowerCaseUnicode, upperCaseUnicode, digitsUnicode :: Map.Map ModKey String
+lowerCaseUnicode :: Map.Map ModKey String
 lowerCaseUnicode = Map.fromList $
     [(ModKey noMods SDL.SDLK_a, "a")
     ,(ModKey noMods SDL.SDLK_b, "b")
@@ -79,6 +88,7 @@ lowerCaseUnicode = Map.fromList $
     ,(ModKey noMods SDL.SDLK_y, "y")
     ,(ModKey noMods SDL.SDLK_z, "z")
     ]
+upperCaseUnicode :: Map.Map ModKey String
 upperCaseUnicode = Map.fromList $
     [(ModKey shift SDL.SDLK_a, "A")
     ,(ModKey shift SDL.SDLK_b, "B")
@@ -107,6 +117,7 @@ upperCaseUnicode = Map.fromList $
     ,(ModKey shift SDL.SDLK_y, "Y")
     ,(ModKey shift SDL.SDLK_z, "Z")
     ]
+digitsUnicode :: Map.Map ModKey String
 digitsUnicode = Map.fromList $
     [(ModKey noMods SDL.SDLK_0, "0")
     ,(ModKey noMods SDL.SDLK_1, "1")

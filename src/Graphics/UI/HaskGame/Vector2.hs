@@ -17,11 +17,16 @@ data Vector2 a = Vector2 !a !a
 
 type Endo a = a -> a
 
-fst, snd :: Vector2 a -> a
+fst :: Vector2 a -> a
 fst (Vector2 x _) = x
+
+snd :: Vector2 a -> a
 snd (Vector2 _ y) = y
-first, second :: Endo a -> Endo (Vector2 a)
+
+first :: Endo a -> Endo (Vector2 a)
 first f (Vector2 x y) = Vector2 (f x) y
+
+second :: Endo a -> Endo (Vector2 a)
 second f (Vector2 x y) = Vector2 x (f y)
 
 instance Functor Vector2 where

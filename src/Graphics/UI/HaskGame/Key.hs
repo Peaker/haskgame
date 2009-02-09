@@ -38,10 +38,16 @@ modsName mods =
 keyName :: ModKey -> String
 keyName (ModKey mods sdlkey) = modsName mods ++ SDL.getKeyName sdlkey
 
-noMods, shift, ctrl, alt :: Mods
+noMods :: Mods
 noMods = MkMods False False False
+
+shift :: Mods
 shift = noMods{isShift=True}
+
+ctrl :: Mods
 ctrl = noMods{isCtrl=True}
+
+alt :: Mods
 alt = noMods{isAlt=True}
 
 modsOf :: [SDL.Modifier] -> Mods

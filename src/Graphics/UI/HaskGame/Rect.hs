@@ -34,8 +34,10 @@ make :: Vector2 Int -> Vector2 Int -> Rect
 make = curry fromVectors
 
 -- To Positional vectors
-vectorsToPVectors, pVectorsToVectors :: Endo (Two (Vector2 Int))
+vectorsToPVectors :: Endo (Two (Vector2 Int))
 vectorsToPVectors (p, s) = (p, p+s)
+
+pVectorsToVectors :: Endo (Two (Vector2 Int))
 pVectorsToVectors (p1, p2) = (p1, p2-p1)
 
 toPVectors :: Rect -> Two (Vector2 Int)
@@ -44,14 +46,22 @@ toPVectors = vectorsToPVectors . toVectors
 inRect :: Endo (Two (Vector2 Int)) -> Endo Rect
 inRect f = fromVectors . f . toVectors
 
-pos, size :: Endo (Vector2 Int) -> Endo Rect
+pos :: Endo (Vector2 Int) -> Endo Rect
 pos = inRect . first
+
+size :: Endo (Vector2 Int) -> Endo Rect
 size = inRect . second
 
-x, y, w, h :: Endo Int -> Endo Rect
+x :: Endo Int -> Endo Rect
 x = pos . Vector2.first
+
+y :: Endo Int -> Endo Rect
 y = pos . Vector2.second
+
+w :: Endo Int -> Endo Rect
 w = size . Vector2.first
+
+h :: Endo Int -> Endo Rect
 h = size . Vector2.second
 
 makeFromPos :: Vector2 Int -> Rect
