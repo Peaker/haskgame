@@ -43,8 +43,8 @@ blit dest pos src = do
 blitPart :: Surface -> Vector2 Int -> Surface -> Rect -> IO ()
 blitPart dest destPos src srcRect = do
   SDL.blitSurface
-     src (Just . Rect.trunc $ srcRect) dest
-     (Just . Rect.makeFromPos $ destPos)
+     src  (Just . Rect.trunc $ srcRect)
+     dest (Just . Rect.makeFromPos $ destPos)
   return ()
 
 sdlFillRect :: Surface -> Maybe Rect -> Color -> IO ()

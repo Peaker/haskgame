@@ -3,11 +3,14 @@ module Graphics.UI.HaskGame.Rect
     ,toVectors
     ,fromVectors
     ,make
+    ,getTopLeft
+    ,getSize
+    ,getBottomRight
     ,vectorsToPVectors, pVectorsToVectors, toPVectors
     ,inRect
     ,pos, size
     ,x, y, w, h
-    ,makeFromPos
+    ,makeFromPos,makeFromSize
     ,posInside
     ,trunc
     ,union
@@ -26,6 +29,15 @@ type Two a = (a, a)
 
 toVectors :: Rect -> Two (Vector2 Int)
 toVectors (SDL.Rect rx ry rw rh) = (Vector2 rx ry, Vector2 rw rh)
+
+getTopLeft :: Rect -> Vector2 Int
+getTopLeft = fst . toVectors
+
+getSize :: Rect -> Vector2 Int
+getSize = snd . toVectors
+
+getBottomRight :: Rect -> Vector2 Int
+getBottomRight = snd . vectorsToPVectors . toVectors
 
 fromVectors :: Two (Vector2 Int) -> Rect
 fromVectors (Vector2 rx ry, Vector2 rw rh) = SDL.Rect rx ry rw rh
@@ -66,6 +78,9 @@ h = size . Vector2.second
 
 makeFromPos :: Vector2 Int -> Rect
 makeFromPos (Vector2 rx ry) = SDL.Rect rx ry 0 0
+
+makeFromSize :: Vector2 Int -> Rect
+makeFromSize (Vector2 rw rh) = SDL.Rect 0 0 rw rh
 
 posInside :: Vector2 Int -> Rect -> Bool
 posInside point rect =
