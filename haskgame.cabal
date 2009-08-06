@@ -1,5 +1,5 @@
 Name:                haskgame
-Version:             0.0.5
+Version:             0.0.6
 Cabal-Version:       >= 1.2
 Synopsis:            Haskell game library.
 Category:            graphics
@@ -30,7 +30,7 @@ Library
   Extensions:
 -- SDL-ttf prior to 0.5.5 can be used on x86-32, but on x86-64 bugs
 -- render it unusable
-  Build-Depends:       base, haskell98, containers, SDL, SDL-ttf >= 0.5.5
+  Build-Depends:       base >= 4 && < 5, haskell98, containers, SDL, SDL-ttf >= 0.5.5
   Exposed-Modules:     Graphics.UI.HaskGame,
                        Graphics.UI.HaskGame.Color,
                        Graphics.UI.HaskGame.Font,

@@ -77,5 +77,5 @@ surfaceSize :: Surface -> Vector2 Int
 surfaceSize surface = Vector2 (SDL.surfaceGetWidth surface)
                               (SDL.surfaceGetHeight surface)
 
-setVideoMode :: Int -> Int -> Int -> IO Surface
-setVideoMode xres yres colorDepth = SDL.setVideoMode xres yres colorDepth [SDL.DoubleBuf]
+setVideoMode :: Vector2 Int -> Int -> IO Surface
+setVideoMode (Vector2 xres yres) colorDepth = SDL.setVideoMode xres yres colorDepth [SDL.DoubleBuf]
